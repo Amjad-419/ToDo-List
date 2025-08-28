@@ -1,0 +1,212 @@
+body{
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+/* Hauptcontainer für die Aufgabenliste */
+.container{
+
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgb(0, 0, 0, 0.3);
+  width: 400px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+/* Überschrift der Aufgabenliste */
+.container h1{
+  margin-bottom: 30px;
+  color: #6d4161;
+}
+
+/* Eingabefeld für neue Aufgaben */
+#task-input{
+  width: 70%;
+  padding: 10px;
+  border-radius:5px;
+  border: 1px solid #816d6d;
+  margin-right: 10px;
+  background-color: transparent; 
+  color: #5d0a2f;
+  transition : all 0.5s ease;
+}
+
+#task-input:focus{
+  border-color: #b189a6;
+  box-shadow: 0 0 8px rgba(169, 117, 205, 0.5);
+  outline: none;
+}
+
+/* Button zum Hinzufügen einer Aufgabe */
+#add-task-btn{
+  padding: 10px 15px;
+  margin-top: 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: #6f4974;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.5s ease, transform 0.3s ease;
+
+}
+
+#add-task-btn:hover{
+  background-color: #866696;
+  transform: scale(1.02);
+}
+
+/* Liste der Aufgaben */
+#task-list{
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+/* Einzelne Aufgabe */
+#task-list li{
+   background-color: rgba(255, 255, 255, 0.2);
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.5s ease;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  color: #450723;
+}
+
+#task-list li:hover {
+    background-color: rgba(255, 255, 255, 0.35); 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Löschen-Button für jede Aufgabe */
+.delete-btn{
+  padding: 8px;
+  background-color: #814059;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color o.3s;
+}
+
+.delete-btn:hover{
+  background-color: #b22156;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*body {
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+}
+
+.container {
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.input-group {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.empty {
+  text-align: center;
+  color: #888;
+  margin-top: 20px;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.list li {
+  background-color: #f1f1f1;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.list li button {
+  background-color: #e74c3c;
+  border-radius: 5px;
+  padding: 5px 8px;
+}
+
+.list li button:hover {
+  background-color: #c0392b;
+}*/
