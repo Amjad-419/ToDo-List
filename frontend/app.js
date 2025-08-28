@@ -2,44 +2,50 @@ const taskInput = document.getElementById("task-input");
 const addTaskBtn = document.getElementById("add-task-btn");
 const taskList   = document.getElementById("task-list");
 
-function addTask (){
+async function addTask(){
   const taskText = taskInput.value.trim();
+  if(taskText === "") return;
 
-// Überprüfen, ob das Eingabefeld nicht leer ist
-if(taskText !== ''){
-  const li = document.createElement('li');
-  li.textContent = taskText;
+  await fetch("http://localhost:5000/tasks", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ task: taskText })
+  });
 
-  // Löschen-Button erstellen
-  const deleteBtn = document.createElement('button');
-  deleteBtn.textContent = 'Löschen';
-  deleteBtn.className = 'delete-btn';
-
-  // Löschen-Button zum Listenelement hinzufügen
-  li.appendChild(deleteBtn);
-
-  // Neues Listenelement zur Liste hinzufügen 
-  taskList.appendChild(li);
-
-  taskInput.Value = '';
+  taskInput.value = "";
+  loadTasks();
 }
-}
-//----- Enter kliken----
-addTaskBtn.addEventListener('click', addTask);
 
-taskInput.addEventListener('keypress', function(e) {
+// Enter-Taste zum Hinzufügen
+taskInput.addEventListener('keydown', function(e) {
   if (e.key === "Enter") {
-  addTask();
+    addTask();
   }
 });
-
-// Ereignislistener für den Hinzufügen-Button
+// Klick auf Button -> Aufgabe hinzufügen
 addTaskBtn.addEventListener('click', addTask);
 
-// Ereignislistener für Löschen-Buttons mit Event Delegation
-taskList.addEventListener('click', function(e){
-  if(e.target.classList.contains('delete-btn')){
-  const li = e.target.parentElement;
-  taskList.removeChild(li);
-  }
-})
+// Aufgaben vom Backend laden
+async function loadTasks(){
+  const res = await fetch("http://localhost:5000/tasks");
+  const tasks = await res.json();
+
+  taskList.innerHTML = "";
+  tasks.forEach((task, index) => {
+    const li = document.createElement("li");
+    li.textContent = task;
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Löschen";
+    deleteBtn.onclick = async () => {
+      await fetch(`http://localhost:5000/tasks/${index}`, { method: "DELETE" });
+      loadTasks();
+    };
+
+    li.appendChild(deleteBtn);
+    taskList.appendChild(li);
+  });
+}
+
+// Beim Laden der Seite Aufgaben anzeigen
+document.addEventListener("DOMContentLoaded", loadTasks);
