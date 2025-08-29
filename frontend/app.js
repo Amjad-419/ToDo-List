@@ -2,6 +2,7 @@ const taskInput = document.getElementById("task-input");
 const addTaskBtn = document.getElementById("add-task-btn");
 const taskList   = document.getElementById("task-list");
 
+
 async function addTask(){
   const taskText = taskInput.value.trim();
   if(taskText === "") return;
@@ -31,14 +32,14 @@ async function loadTasks(){
   const tasks = await res.json();
 
   taskList.innerHTML = "";
-  tasks.forEach((task, index) => {
+  tasks.forEach((task) => {
     const li = document.createElement("li");
-    li.textContent = task;
+    li.textContent = task.task_text;
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Löschen";
     deleteBtn.onclick = async () => {
-      await fetch(`http://localhost:5000/tasks/${index}`, { method: "DELETE" });
+      await fetch(`http://localhost:5000/tasks/${task.id}`, { method: "DELETE" });
       loadTasks();
     };
 
