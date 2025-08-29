@@ -8,13 +8,14 @@ const app = express();
 app.use(cors()); // Erlaubt Anfragen vom Frontend
 app.use(express.json()); // JSON-Anfragen verarbeiten
 
-// Verbindung zur MySQL-Datenbank herstellen
+
 const db = mysql.createConnection({
-  host: "127.0.0.1",
-  user: "root",
-  password: "am5379362758",
-  database: "todo_db"
+  host: "localhost",     // Standard: Lokaler Server
+  user: "root",          // Standard-Benutzer
+  password: "",          // Passwort (leer, falls nicht gesetzt)
+  database: "shopdb"     // Name der Datenbank
 });
+
 
 // Verbindung testen
 db.connect(err => {
