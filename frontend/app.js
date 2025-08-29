@@ -7,7 +7,7 @@ async function addTask(){
   const taskText = taskInput.value.trim();
   if(taskText === "") return;
 
-  await fetch("http://localhost:5000/tasks", {
+  await fetch("/tasks", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({ task: taskText })
@@ -28,7 +28,7 @@ addTaskBtn.addEventListener('click', addTask);
 
 // Aufgaben vom Backend laden
 async function loadTasks(){
-  const res = await fetch("http://localhost:5000/tasks");
+  const res = await fetch("/tasks");
   const tasks = await res.json();
 
   taskList.innerHTML = "";
@@ -39,7 +39,7 @@ async function loadTasks(){
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Löschen";
     deleteBtn.onclick = async () => {
-      await fetch(`http://localhost:5000/tasks/${task.id}`, { method: "DELETE" });
+      await fetch(`/tasks/${task.id}`, { method: "DELETE" });
       loadTasks();
     };
 
